@@ -14,19 +14,7 @@ export default class Webtoon {
         this.name = name
 
     }
-
-    // async main({ name }) {
-        
-    //     this.chapters = await this.fetchWebtoon(this.url)
-
-    //     for(const chapter of this.chapters) {
-
-    //         const pdfFilename = await this.fetchChapter(chapter)
-
-    //     }
-
-    // }
-
+    
     createUrl(name) {
 
         return `https://toonily.com/webtoon/${this.formatName(name)}`
