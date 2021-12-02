@@ -1,6 +1,5 @@
 import PDFDocument from "pdfkit"
 import fetch from "node-fetch"
-import AdmZip from "adm-zip"
 import jsdom from "jsdom"
 
 import * as fs from "fs"
@@ -14,7 +13,7 @@ export default class Webtoon {
         this.name = name
 
     }
-    
+
     createUrl(name) {
 
         return `https://toonily.com/webtoon/${this.formatName(name)}`
@@ -103,8 +102,6 @@ export default class Webtoon {
 
             fs.unlinkSync(imageFilename)
 
-            // console.log("removed", imageFilename)
-
         }
 
         pdfDocument.end()
@@ -113,12 +110,5 @@ export default class Webtoon {
 
     }
 
-    zipPdf(pdfFilename) {
-
-        const compressedFile = new AdmZip()
-        compressedFile.addLocalFile(pdfFilename, "", "pdf")
-        return compressedFile.toBuffer()
-
-    }
 
 }
