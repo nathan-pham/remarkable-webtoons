@@ -86,7 +86,7 @@ export default class Webtoon {
 
         if(!fs.existsSync(mangaDir)) fs.mkdirSync(mangaDir)
 
-        const pdfDocument = new PDFDocument()
+        const pdfDocument = new PDFDocument({ autoFirstPage: false })
 
         pdfDocument.pipe(fs.createWriteStream(filename))
 
@@ -97,7 +97,8 @@ export default class Webtoon {
 
             console.log("downloaded", imageUrl)
 
-            pdfDocument.addPage({ size: [ pdfImage.width, pdfImage.height]  })
+            pdfDocument.addPage({ size: [ pdfImage.width, pdfImage.height] })
+            // (pdfDocument.page.width / 2) - (pdfImage.width / 2)
             pdfDocument.image(pdfImage, 0, 0)
 
             fs.unlinkSync(imageFilename)
